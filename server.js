@@ -17,7 +17,8 @@ app.get("/", function (request, response) {
   var str = '';
   result.ipaddress = request.headers['x-forwarded-for'].split(',')[0];
   result.language = request.headers['accept-language'].split(',')[0];
-  var start = request.headers['user-agent'].search(;
+  var start = request.headers['user-agent'].split('(')[1];
+  console.log(start);
   result.software = '';
   console.log(request.headers['user-agent']);
   response.send(result);
