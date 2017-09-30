@@ -14,11 +14,13 @@ app.use(express.static('public'));
 // http://expressjs.com/en/starter/basic-routing.html
 app.get("/", function (request, response) {
   var result = {};
-  result.ipaddress = 
-  console.log(request.headers['x-forwarded-for'].split(',')[0]);
-  console.log(request.headers['accept-language'].split(',')[0]);
+  var str = '';
+  result.ipaddress = request.headers['x-forwarded-for'].split(',')[0];
+  result.language = request.headers['accept-language'].split(',')[0];
+  var start = request.headers['user-agent'].search(;
+  result.software = '';
   console.log(request.headers['user-agent']);
-  response.end();
+  response.send(result);
 });
 
 // listen for requests :)
